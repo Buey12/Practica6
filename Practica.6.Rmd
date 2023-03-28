@@ -2,7 +2,9 @@
 title: "Partica 6"
 author: "julio"
 date: "2023-03-29"
-output: html_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -121,9 +123,17 @@ plot(x_distancia, y_cuentas, main = paste("Y =", round(modelo$coefficients[2],4)
 abline(modelo)
 ```
 
-#13
+#13 residuos = error
+```{r}
+residuos <- resid(modelo)
+residuos
 
+residuos_estandarizados <- rstandard(modelo)
+residuos_estandarizados
 
+residuos_estudentizados <- rstudent(modelo)
+residuos_estudentizados
 
-
+```
+#14
 
