@@ -1,0 +1,100 @@
+---
+title: "Partica 6"
+author: "julio"
+date: "2023-03-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Practica 6
+
+#1º Instalar librerias 
+
+
+
+#2º Cree 2 variables almacenadas como vector: “y_cuentas” y “x_distancia” a partir de los siguientes valores numéricos:  
+
+#Cuentas: “110,2,6,98,40,94,31,5,8,10” 
+#Distancia: “1.1,100.2,90.3,5.4,57.5,6.6,34.7,65.8,57.9,86.1”
+
+```{r}
+y_cuentas <- c(110,2,6,98,40,94,31,5,8,10)
+x_distancia <- c(1.1,100.2,90.3,5.4,57.5,6.6,34.7,65.8,57.9,86.1)
+```
+
+#3º
+```{r}
+hist(x_distancia,main = "histograma de distancia", xlab = "Distancia", ylab = "Frecuencia")
+```
+
+#4
+```{r}
+shapiro.test(x_distancia)
+```
+#5
+```{r}
+
+xy <- y_cuentas * x_distancia
+
+xy
+
+```
+#6
+```{r}
+x_cuadrado <- x_distancia^2
+
+x_cuadrado
+```
+#7
+```{r}
+tabla_datos <- data.frame(y_cuentas, x_distancia, xy, x_cuadrado)
+
+tabla_datos
+
+```
+#8
+```{r}
+library(kableExtra)
+kable(tabla_datos, caption = "Tabla de Datos") %>%
+  kable_styling(full_width = F)
+
+```
+
+#9
+```{r}
+#Calculando el sumatorio de la primera columna
+sum(tabla_datos$y_cuentas)
+
+#Calculando el sumatorio de la segunda columna
+sum(tabla_datos$x_distancia)
+
+#Calculando el sumatorio de la tercera columna
+sum(tabla_datos$xy)
+
+#Calculando el sumatorio de la cuarta columna
+sum(tabla_datos$x_cuadrado)
+```
+```{r}
+xy <- 0 # Definir la variable antes de usarla 
+sum(xy) # Ahora se puede usar sin problemas
+
+#Arreglo de problema a la hora de pasar el archivo a HTML. Esta es una solución.
+
+#Para solucionar este problema,me he asegurado de definir aquellas varables que estoy usando.
+```
+
+#10
+
+```{r}
+
+
+```
+
+
+
+
+
+
