@@ -102,7 +102,26 @@ tabla_datos_final
 
 ```
 
+$$\begin{equation}
+\bar{y} = \frac{1}{n}\sum_{i=1}^n y_i
+\end{equation}$$
+explicar esta formula y la teorica 
+
 #11
+
+```{r}
+modelo <- lm(y_cuentas ~ x_distancia)
+
+```
+
+#12
+
+```{r}
+plot(x_distancia, y_cuentas, main = paste("Y =", round(modelo$coefficients[2],4),"* X + ", round(modelo$coefficients[1],4)), xlab = "Distancia", ylab = "Cuentas")
+abline(modelo)
+```
+
+#13
 
 
 
