@@ -89,10 +89,20 @@ sum(xy) # Ahora se puede usar sin problemas
 #10
 
 ```{r}
+sum.y_cuentas <- sum(tabla_datos$y_cuentas)
+sum.x_distancia <- sum(tabla_datos$x_distancia)
+sum.xy <- sum(tabla_datos$xy)
+sum.x_cuadrado <- sum(tabla_datos$x_cuadrado)
 
+row.sums <- c(sum.y_cuentas,sum.x_distancia,sum.xy,sum.x_cuadrado)
+
+tabla_datos_final <- rbind(tabla_datos, row.sums)
+
+tabla_datos_final
 
 ```
 
+#11
 
 
 
