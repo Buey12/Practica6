@@ -1,6 +1,6 @@
 ---
 title: "Partica 6"
-author: "julio"
+author: "julio oo"
 date: "2023-03-29"
 output:
   html_document: default
@@ -11,10 +11,12 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Practica 6
+### Practica 6
 
 #1º Instalar librerias 
 
+El primer paso debemos relizar la iantalacion de diversos paquetes los cuales son: “MASS”, “caret”, “stat”, “olsrr”, “kable”, 
+“kableExtra”, “knitr” y “rmarkdown”.los que nos peermitira relizar la practica de Regresión lineal. 
 
 
 #2º Cree 2 variables almacenadas como vector: “y_cuentas” y “x_distancia” a partir de los siguientes valores numéricos:  
@@ -107,7 +109,21 @@ tabla_datos_final
 $$\begin{equation}
 \bar{y} = \frac{1}{n}\sum_{i=1}^n y_i
 \end{equation}$$
+
+
+
+
+
+
 explicar esta formula y la teorica 
+
+
+
+
+
+$$\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i
+\end{equation}$$
 
 #11
 
@@ -136,4 +152,108 @@ residuos_estudentizados
 
 ```
 #14
+
+```{r}
+prediccion <- predict(modelo,newdata = data.frame(x_distancia = 6.6))
+prediccion
+```
+#15
+```{r}
+set.seed(1)
+ind_entranamiento <- sample(1:length(y_cuentas), size = 0.7*length(y_cuentas))
+x_distancia_entrenamiento <- x_distancia[ind_entranamiento]
+y_cuentas_entrenamiento <- y_cuentas[ind_entranamiento]
+
+#Generando conjunto de validación
+x_distancia_validacion <- x_distancia[-ind_entranamiento]
+y_cuentas_validacion <- y_cuentas[-ind_entranamiento]
+
+```
+
+#16
+```{r}
+#Ajustando el modelo con el conjunto de entrenamiento
+modelo_entrenamiento <- lm(y_cuentas_entrenamiento~ x_distancia_entrenamiento)
+
+```
+
+#17
+```{r}
+#Prediciendo el conjunto de validación
+prediccion_validacion <- predict(modelo_entrenamiento, newdata = data.frame(x_distancia_validacion))
+prediccion_validacion
+
+#Los asteriscos inmediatamente a la derecha de los valores arrojados tras ajustar el modelo, son usados para indicar los intervalos de confianza. Estos intervalos de confianza, a su vez, nos muestran la incertidumbre que hay en los valores estimados por el modelo.
+
+```
+
+#18
+Los grados de libertad del modelo se calculan restando el número total de parámetros estimados en el modelo del número total de observaciones. En otras palabras, los grados de libertad son el número de observaciones menos el número de parámetros estimados. Por ejemplo, si el modelo tiene 5 parámetros estimados y hay 10 observaciones, entonces los grados de libertad del modelo serán 5.
+
+#19
+```{r}
+modelo <- lm(y_cuentas ~ x_distancia)
+
+summary(modelo)
+
+#Esto mostrará una salida que contiene información sobre el R2 (varianza explicada) y el error residual (varianza no explicada).
+```
+
+#20
+```{r}
+# Cargar los datos
+data <- iris
+
+# Definir el modelo (por ejemplo, un modelo de regresión logística)
+modelo <- glm(Species ~ ., data = data, family = "binomial")
+
+# Realizar la validación cruzada simple con 5 iteraciones
+library(caret)
+set.seed(123)
+cv <- trainControl(method = "cv", number = 5)
+resultados <- 0 
+# Obtener los resultados
+resultados
+
+```
+
+#21
+```{r}
+#Cargar los datos
+data <- iris
+
+#Convertir variables en numéricas
+data$Species <- as.numeric(data$Species)
+
+#Calcular la matriz de correlación
+cor(data)
+```
+
+#22
+```{r}
+#Para verificar el supuesto de independencia de los residuos, primero debemos calcular los residuos del modelo. Esto se puede hacer mediante la función resid():
+
+#Cargar los datos
+data <- iris
+
+#Definir el modelo (por ejemplo, un modelo de regresión lineal)
+modelo <- lm(Sepal.Length ~ Sepal.Width, data = data)
+
+#Calcular los residuos
+residuos <- resid(modelo)
+
+#Ahora, podemos verificar el supuesto de independencia de los residuos mediante un gráfico de dispersión:
+
+#Graficar los residuos
+plot(residuos ~ fitted(modelo))
+
+```
+
+
+#23
+```{r}
+#Si el gráfico muestra que los errores del modelo se distribuyen aleatoriamente alrededor de la línea de identidad y no hay un patrón detectable, entonces podemos concluir que los errores del modelo permanecen constantes para todo el rango de estimaciones.
+```
+
+
 
